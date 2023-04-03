@@ -1,0 +1,118 @@
+diff --git a/node_modules/react-native-web/dist/cjs/modules/UnimplementedView/index.js b/node_modules/react-native-web/dist/cjs/modules/UnimplementedView/index.js
+index 0d4daed..860ddc0 100644
+--- a/node_modules/react-native-web/dist/cjs/modules/UnimplementedView/index.js
++++ b/node_modules/react-native-web/dist/cjs/modules/UnimplementedView/index.js
+@@ -27,7 +27,8 @@ class UnimplementedView extends _react.default.Component {
+ 
+   render() {
+     return /*#__PURE__*/_react.default.createElement(_View.default, {
+-      style: [unimplementedViewStyles, this.props.style]
++      style: [unimplementedViewStyles, this.props.style],
++      className: this.props.className
+     }, this.props.children);
+   }
+ 
+diff --git a/node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js b/node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js
+index f3086c2..7448f78 100644
+--- a/node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js
++++ b/node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js
+@@ -11,7 +11,7 @@ var _AccessibilityUtil = _interopRequireDefault(require("../AccessibilityUtil"))
+ 
+ var _StyleSheet2 = _interopRequireDefault(require("../../exports/StyleSheet"));
+ 
+-var _excluded = ["accessibilityActiveDescendant", "accessibilityAtomic", "accessibilityAutoComplete", "accessibilityBusy", "accessibilityChecked", "accessibilityColumnCount", "accessibilityColumnIndex", "accessibilityColumnSpan", "accessibilityControls", "accessibilityCurrent", "accessibilityDescribedBy", "accessibilityDetails", "accessibilityDisabled", "accessibilityErrorMessage", "accessibilityExpanded", "accessibilityFlowTo", "accessibilityHasPopup", "accessibilityHidden", "accessibilityInvalid", "accessibilityKeyShortcuts", "accessibilityLabel", "accessibilityLabelledBy", "accessibilityLevel", "accessibilityLiveRegion", "accessibilityModal", "accessibilityMultiline", "accessibilityMultiSelectable", "accessibilityOrientation", "accessibilityOwns", "accessibilityPlaceholder", "accessibilityPosInSet", "accessibilityPressed", "accessibilityReadOnly", "accessibilityRequired", "accessibilityRole", "accessibilityRoleDescription", "accessibilityRowCount", "accessibilityRowIndex", "accessibilityRowSpan", "accessibilitySelected", "accessibilitySetSize", "accessibilitySort", "accessibilityValueMax", "accessibilityValueMin", "accessibilityValueNow", "accessibilityValueText", "dataSet", "focusable", "nativeID", "pointerEvents", "style", "testID"];
++var _excluded = ["accessibilityActiveDescendant", "accessibilityAtomic", "accessibilityAutoComplete", "accessibilityBusy", "accessibilityChecked", "accessibilityColumnCount", "accessibilityColumnIndex", "accessibilityColumnSpan", "accessibilityControls", "accessibilityCurrent", "accessibilityDescribedBy", "accessibilityDetails", "accessibilityDisabled", "accessibilityErrorMessage", "accessibilityExpanded", "accessibilityFlowTo", "accessibilityHasPopup", "accessibilityHidden", "accessibilityInvalid", "accessibilityKeyShortcuts", "accessibilityLabel", "accessibilityLabelledBy", "accessibilityLevel", "accessibilityLiveRegion", "accessibilityModal", "accessibilityMultiline", "accessibilityMultiSelectable", "accessibilityOrientation", "accessibilityOwns", "accessibilityPlaceholder", "accessibilityPosInSet", "accessibilityPressed", "accessibilityReadOnly", "accessibilityRequired", "accessibilityRole", "accessibilityRoleDescription", "accessibilityRowCount", "accessibilityRowIndex", "accessibilityRowSpan", "accessibilitySelected", "accessibilitySetSize", "accessibilitySort", "accessibilityValueMax", "accessibilityValueMin", "accessibilityValueNow", "accessibilityValueText", "dataSet", "focusable", "nativeID", "pointerEvents", "style", "testID", "className"];
+ var emptyObject = {};
+ var hasOwnProperty = Object.prototype.hasOwnProperty;
+ var isArray = Array.isArray;
+@@ -102,6 +102,7 @@ var createDOMProps = (elementType, props, options) => {
+       pointerEvents = _props.pointerEvents,
+       style = _props.style,
+       testID = _props.testID,
++      propsClassName = _props.className,
+       domProps = (0, _objectWithoutPropertiesLoose2.default)(_props, _excluded);
+   var disabled = accessibilityDisabled;
+ 
+@@ -353,6 +354,12 @@ var createDOMProps = (elementType, props, options) => {
+     domProps.className = className;
+   }
+ 
++  if (propsClassName) {
++    domProps.className = domProps.className
++      ? domProps.className + ' ' + propsClassName
++      : propsClassName;
++  }
++
+   if (inlineStyle) {
+     domProps.style = inlineStyle;
+   } // OTHER
+diff --git a/node_modules/react-native-web/dist/cjs/modules/forwardedProps/index.js b/node_modules/react-native-web/dist/cjs/modules/forwardedProps/index.js
+index d10e0ee..2943c76 100644
+--- a/node_modules/react-native-web/dist/cjs/modules/forwardedProps/index.js
++++ b/node_modules/react-native-web/dist/cjs/modules/forwardedProps/index.js
+@@ -111,6 +111,7 @@ var touchProps = {
+ };
+ exports.touchProps = touchProps;
+ var styleProps = {
++  className: true,
+   classList: true,
+   style: true
+ };
+diff --git a/node_modules/react-native-web/dist/modules/UnimplementedView/index.js b/node_modules/react-native-web/dist/modules/UnimplementedView/index.js
+index 2fbdb0c..f5c87fc 100644
+--- a/node_modules/react-native-web/dist/modules/UnimplementedView/index.js
++++ b/node_modules/react-native-web/dist/modules/UnimplementedView/index.js
+@@ -18,7 +18,8 @@ class UnimplementedView extends React.Component {
+ 
+   render() {
+     return /*#__PURE__*/React.createElement(View, {
+-      style: [unimplementedViewStyles, this.props.style]
++      style: [unimplementedViewStyles, this.props.style],
++      className: this.props.className
+     }, this.props.children);
+   }
+ 
+diff --git a/node_modules/react-native-web/dist/modules/createDOMProps/index.js b/node_modules/react-native-web/dist/modules/createDOMProps/index.js
+index 7720865..20e7d32 100644
+--- a/node_modules/react-native-web/dist/modules/createDOMProps/index.js
++++ b/node_modules/react-native-web/dist/modules/createDOMProps/index.js
+@@ -1,5 +1,5 @@
+ import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/objectWithoutPropertiesLoose";
+-var _excluded = ["accessibilityActiveDescendant", "accessibilityAtomic", "accessibilityAutoComplete", "accessibilityBusy", "accessibilityChecked", "accessibilityColumnCount", "accessibilityColumnIndex", "accessibilityColumnSpan", "accessibilityControls", "accessibilityCurrent", "accessibilityDescribedBy", "accessibilityDetails", "accessibilityDisabled", "accessibilityErrorMessage", "accessibilityExpanded", "accessibilityFlowTo", "accessibilityHasPopup", "accessibilityHidden", "accessibilityInvalid", "accessibilityKeyShortcuts", "accessibilityLabel", "accessibilityLabelledBy", "accessibilityLevel", "accessibilityLiveRegion", "accessibilityModal", "accessibilityMultiline", "accessibilityMultiSelectable", "accessibilityOrientation", "accessibilityOwns", "accessibilityPlaceholder", "accessibilityPosInSet", "accessibilityPressed", "accessibilityReadOnly", "accessibilityRequired", "accessibilityRole", "accessibilityRoleDescription", "accessibilityRowCount", "accessibilityRowIndex", "accessibilityRowSpan", "accessibilitySelected", "accessibilitySetSize", "accessibilitySort", "accessibilityValueMax", "accessibilityValueMin", "accessibilityValueNow", "accessibilityValueText", "dataSet", "focusable", "nativeID", "pointerEvents", "style", "testID"];
++var _excluded = ["accessibilityActiveDescendant", "accessibilityAtomic", "accessibilityAutoComplete", "accessibilityBusy", "accessibilityChecked", "accessibilityColumnCount", "accessibilityColumnIndex", "accessibilityColumnSpan", "accessibilityControls", "accessibilityCurrent", "accessibilityDescribedBy", "accessibilityDetails", "accessibilityDisabled", "accessibilityErrorMessage", "accessibilityExpanded", "accessibilityFlowTo", "accessibilityHasPopup", "accessibilityHidden", "accessibilityInvalid", "accessibilityKeyShortcuts", "accessibilityLabel", "accessibilityLabelledBy", "accessibilityLevel", "accessibilityLiveRegion", "accessibilityModal", "accessibilityMultiline", "accessibilityMultiSelectable", "accessibilityOrientation", "accessibilityOwns", "accessibilityPlaceholder", "accessibilityPosInSet", "accessibilityPressed", "accessibilityReadOnly", "accessibilityRequired", "accessibilityRole", "accessibilityRoleDescription", "accessibilityRowCount", "accessibilityRowIndex", "accessibilityRowSpan", "accessibilitySelected", "accessibilitySetSize", "accessibilitySort", "accessibilityValueMax", "accessibilityValueMin", "accessibilityValueNow", "accessibilityValueText", "dataSet", "focusable", "nativeID", "pointerEvents", "style", "testID", "className"];
+ 
+ /**
+  * Copyright (c) Nicolas Gallagher.
+@@ -101,6 +101,7 @@ var createDOMProps = (elementType, props, options) => {
+       pointerEvents = _props.pointerEvents,
+       style = _props.style,
+       testID = _props.testID,
++      propsClassName = _props.className,
+       domProps = _objectWithoutPropertiesLoose(_props, _excluded);
+ 
+   var disabled = accessibilityDisabled;
+@@ -351,6 +352,12 @@ var createDOMProps = (elementType, props, options) => {
+     domProps.className = className;
+   }
+ 
++  if (propsClassName) {
++    domProps.className = domProps.className
++      ? domProps.className + ' ' + propsClassName
++      : propsClassName;
++  }
++
+   if (inlineStyle) {
+     domProps.style = inlineStyle;
+   } // OTHER
+diff --git a/node_modules/react-native-web/dist/modules/forwardedProps/index.js b/node_modules/react-native-web/dist/modules/forwardedProps/index.js
+index 8f7b7eb..bce25e6 100644
+--- a/node_modules/react-native-web/dist/modules/forwardedProps/index.js
++++ b/node_modules/react-native-web/dist/modules/forwardedProps/index.js
+@@ -100,5 +100,6 @@ export var touchProps = {
+ };
+ export var styleProps = {
+   classList: true,
+-  style: true
++  style: true,
++  className: true,
+ };

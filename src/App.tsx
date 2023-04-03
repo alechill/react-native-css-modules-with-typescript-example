@@ -3,7 +3,8 @@ import {SafeAreaView, ScrollView} from 'react-native';
 import styles from './App.css';
 import {Buttons} from './Buttons';
 import {Link} from './Link';
-import {ProfileCard} from './ProfileCard';
+import {ProfileCard} from './ProfileCard/ProfileCard';
+import {Responsive} from './Responsive/Responsive';
 
 export default class App extends React.Component {
   render() {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
             url="https://codepen.io/coolzilj/pen/ImlEG"
           />
           <Buttons />
+          <Responsive />
         </ScrollView>
       </SafeAreaView>
     );

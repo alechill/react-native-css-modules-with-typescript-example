@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #fff;
+  background-color: var(--cube-color-neutral-10);
   padding: 30px;
   flex: 1;
   flex-direction: column;

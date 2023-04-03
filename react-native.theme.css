@@ -1,0 +1,12 @@
+/* 
+This file is a stable path (do not delete, move, or rewname it!)
+
+All native CSS modules will automatically import this file (using postcss-append-string plugin)
+
+To change the app theme, modify the import below to point to the theme.css you want to compile in
+
+This will then be used by Cube components to pull in the theme CSS vars at build time (as it cannot be done dynamically, or globally)
+
+Unfortunately this means no runtime theme switching is a available in react-native like it is in web
+*/
+@import './themes/cube.theme.css'

@@ -1,0 +1,23 @@
+.container {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cube-color-neutral-100);
+}
+
+.responsiveText {
+  color: blue;
+  font-size: 3vmax;
+}
+
+@media (orientation: landscape) {
+  .container {
+      background-color: var(--cube-color-neutral-10);
+      align-items: left;
+  }
+  
+  .responsiveText {
+    color: red;
+    font-size: 10px;
+  }
+}

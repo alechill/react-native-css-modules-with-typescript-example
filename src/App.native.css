@@ -1,6 +1,38 @@
 .wrapper {
-  background-color: #fff;
+  background-color: var(--cube-color-neutral-10);
   padding: 30px;
   flex: 1;
   flex-direction: column;
 }
+
+/* When using the mobile plugins, CSS vars only work when declared in same file... and @import doesnt work either
+
+so we simulate @import using `postcss-import` plugin which will inline any (non-remote) import
+
+this then makes the theme vars defined in the same file, and vars will be available for substitution by `postcss-css-variables`
+
+:root {
+  --cube-color-neutral-100: #ccc;
+  --cube-color-neutral-10: #cb6c6c;
+}
+
+
+
+however we dont want this behaviour in web in order to support easier themeing and runtime switching of themes
+
+(as in web it is real CSS that supports loading a seperate theme.css in browser, containing vars, and them being available at runtime in any other css file)
+
+if they were substituted at build time like in mobile, you would loose ability to dynamically swap in a new theme css vars file
+
+substittion may be desirable for ultimate browser compatibility, but thats a decision that can be left to the consuming web app
+
+
+therefore we dont want to have the import in web, so need to find a way to add import at (mobile) build time to all css files before the import inlining is done
+
+UPDATE:this is now done with a PostCSS plugin to inject :root theme vars at top of file  
+
+*/
+
+
+
+
